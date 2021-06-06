@@ -1,0 +1,39 @@
+.formGroup {
+    margin-top: 10px;    
+}
+
+.input {
+    height: 30px;
+    outline: none;
+    font-size: 16px;
+    margin-right: 10px;
+    background-color: #ddd;
+    border: #ddd 1px solid;
+    border-radius: 2px;
+}
+
+.input:focus {
+    background-color: #fff;
+    border: #ddd 1px solid;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btnPrimary {
+    background-color: rgb(45, 61, 234);
+    color: white;
+    width: 70px;
+    height: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.25s;
+}
+
+.btnPrimary:hover {
+    background-color: blue;
+}

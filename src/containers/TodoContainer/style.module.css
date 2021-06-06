@@ -1,0 +1,25 @@
+.container {
+  width: 80%;
+  background: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  overflow-y: scroll;
+  margin: 0 auto;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+/* 
+::-webkit-scrollbar-track {
+  background: blue;
+} */
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

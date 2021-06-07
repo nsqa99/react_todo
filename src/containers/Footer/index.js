@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { FILTER_ACTIVE, FILTER_ALL, FILTER_DONE } from "../../redux/actions/filters";
+import { DELETE_DONE } from "../../redux/actions/todos";
 import style from "./style.module.css";
 
-const Footer = ({ todos, setTodo, setAction }) => {
+const Footer = ({ todos }) => {
     const [remaining, setRemaining] = useState(1);
     const [bordered, setBorder] = useState(1);
     const [completed, setCompleted] = useState(0);
+    const dispatch = useDispatch();
 
     const filters = [
         { id: 1, title: "All" },
@@ -25,21 +29,32 @@ const Footer = ({ todos, setTodo, setAction }) => {
         setBorder(id);
         switch (id) {
             case 1:
-                setAction(1);
+                dispatch({
+                    type: FILTER_ALL
+                });
                 break;
             case 2:
-                setAction(2);
+                dispatch({
+                    type: FILTER_ACTIVE
+                });
+                break;
+            case 3:
+                dispatch({
+                    type: FILTER_DONE
+                });
                 break;
             default:
-                setAction(3);
+                dispatch({
+                    type: FILTER_ALL
+                });
                 break;
         }
     }
 
     const handleClearComplete = () => {
-        setTodo(todos.filter(todo => {
-            return (todo.isDone === false);
-        }));
+        dispatch({
+            type: DELETE_DONE
+        })
     }
 
     return (

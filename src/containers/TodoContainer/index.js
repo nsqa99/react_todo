@@ -1,49 +1,33 @@
 import React, { useEffect, useState } from "react";
-import handleFilter from "../../utils/handleFilter";
+import { FILTER_ACTIVE, FILTER_ALL, FILTER_DONE } from "../../redux/actions/filters";
 import TodoItem from "./components/TodoItem";
 import style from "./style.module.css";
 
-const TodoContainer = ({ listTodos, setTodo, action }) => {
-    const [doneItem, setDoneItem] = useState(-1);
-    const [deleteItem, setDeleteItem] = useState(-1);
-    const [virtualList, setVirtualList] = useState(listTodos);
+const TodoContainer = ({ listTodos }) => {
+    const { todos, visibility } = listTodos;
+    const [virtualList, setVirtualList] = useState(todos);
 
     useEffect(() => {
-        setVirtualList(handleFilter(action, listTodos));
-    }, [listTodos, action]);
-
-    const handleUpdateTodo = () => {
-        setTodo(
-            listTodos.map(todo => {
-                if (todo.id === doneItem.id) {
-                    return doneItem;
-                }
-                return todo;
-            })
-        )
-    }
-
-    const handleDeleteTodo = () => {
-        setTodo(
-            listTodos.filter(todo => {
-                return (todo.id !== deleteItem);
-            })
-        )
-    }
-
-    useEffect(() => {
-        handleUpdateTodo();
-    }, [doneItem]);
-
-    useEffect(() => {
-        handleDeleteTodo();
-    }, [deleteItem]);
+        switch (visibility) {
+            case FILTER_ALL:
+                setVirtualList(todos);
+                break;
+            case FILTER_ACTIVE:
+                setVirtualList(todos.filter(todo => todo.isDone !== true));
+                break;
+            case FILTER_DONE:
+                setVirtualList(todos.filter(todo => todo.isDone !== false));
+                break;
+            default:
+                break;
+        }
+    }, [listTodos]);
 
     return (
         <div className={style.container}>
             {virtualList.map(todo => {
                 return (
-                    <TodoItem item={todo} key={todo.id} setDoneItem={setDoneItem} setDeleteItem={setDeleteItem} />
+                    <TodoItem item={todo} key={todo.id} />
                 );
             })}
 

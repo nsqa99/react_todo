@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { ADD_TODO } from "../../redux/actions/todos";
 import style from "./style.module.css";
 
-const AddForm = ({ listTodos, setTodo }) => {
+const AddForm = ({ listTodos }) => {
     const [input, setInput] = useState("");
+    const dispatch = useDispatch();
 
     const handleInputChange = (e) => {
         setInput(e.target.value);
@@ -16,7 +19,10 @@ const AddForm = ({ listTodos, setTodo }) => {
             title: input,
             isDone: false
         }
-        setTodo([...listTodos, newItem]);
+        dispatch({
+            type: ADD_TODO,
+            payload: newItem
+        });
         setInput("");
     }
 

@@ -1,12 +1,13 @@
 import React from "react";
-import CheckIcon from '@material-ui/icons/Check';
-import DeleteIcon from '@material-ui/icons/Delete';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import ClearIcon from '@material-ui/icons/Clear';
 import style from "./style.module.css";
 
 const TodoItem = ({ item, setDoneItem, setDeleteItem }) => {
-    
+
     const handleDone = () => {
-        setDoneItem({...item, isDone: !item.isDone});
+        setDoneItem({ ...item, isDone: !item.isDone });
     }
 
     const handleDelete = () => {
@@ -14,14 +15,14 @@ const TodoItem = ({ item, setDoneItem, setDeleteItem }) => {
     }
 
     return (
-        <div className={`${style.container} ${item.isDone ? style.faded : style.none}`}>
-            <p className={item.isDone ? style.crossOver : style.none}>{item.title}</p>
+        <div className={style.container}>
+            <div className={style.btnCheck} onClick={handleDone}>
+                {!item.isDone ? <RadioButtonUncheckedIcon /> : <CheckCircleOutlineIcon style={{color: "#00ff1e"}} />}
+            </div>
+            <p className={item.isDone ? style.done : style.none}>{item.title}</p>
             <div className={style.btnContainer}>
-                <div className={style.btn} onClick={handleDone}>
-                    <CheckIcon />
-                </div>
                 <div className={style.btn} onClick={handleDelete}>
-                    <DeleteIcon />
+                    <ClearIcon className={style.btnClear} />
                 </div>
             </div>
         </div>

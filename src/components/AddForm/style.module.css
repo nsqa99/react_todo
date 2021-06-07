@@ -3,21 +3,19 @@
 }
 
 .input {
-    height: 30px;
+    padding: 16px 16px 16px 60px;
+    border: none;
     outline: none;
-    font-size: 16px;
-    margin-right: 10px;
-    background-color: #ddd;
-    border: #ddd 1px solid;
-    border-radius: 2px;
+    background: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    box-shadow: 1px 20px 30px rgba(0, 0, 0, 0.08);
+    font-size: 24px;
 }
 
-.input:focus {
-    background-color: #fff;
-    border: #ddd 1px solid;
+.formGroup, .input {
+    width: 100%;
 }
 
-.btn {
+/* .btn {
     outline: none;
     border: none;
     cursor: pointer;
@@ -36,4 +34,4 @@
 
 .btnPrimary:hover {
     background-color: blue;
-}
+} */
